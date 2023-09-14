@@ -13,7 +13,8 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class PhotoShootPage extends BasePage{
-    private static final Logger logger = LogManager.getLogger(PhotoShootPage.class);
+   ///private static final Logger logger = LogManager.getLogger(PhotoShootPage.class);
+    Log log;
     private CookieHelper cookieHelper;
     public PhotoShootPage(WebDriver driver){
         super(driver);
@@ -25,9 +26,13 @@ public class PhotoShootPage extends BasePage{
 
     By savePhotoButtonLocator=new By.ByCssSelector("[class=\'btn btnRounded btn-success btn-lg btnFont\']");
 
-    By addIdentityButtonLocator=new By.ByCssSelector("#dashboardMainContent > div > div.dashboardContentMain > div > div > div");
+    By addIdentityButtonLocator=new By.ByCssSelector("[class=\'btn btn-success btm-lg btnRounded btnAgree\']");
 
-    By saveIdentityButtonLocator=new By.ByCssSelector("[class=\'btn btn-success btm-lg btnRounded btnAgree\']");
+    By saveIdentityButtonLocator=new By.ByCssSelector(".btnAgree:nth-child(1)");
+
+    By identityHeaderLocator=new By.ByCssSelector("[class=\'sectionTitle textCenter\']");
+
+
 
     public WebElement photoShootPageHeaderFind(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -36,86 +41,91 @@ public class PhotoShootPage extends BasePage{
     public boolean isDisplayed(){
         return photoShootPageHeaderFind().isDisplayed();
     }
-    public void cameraCookieHelper() {
-        // CookieHelper'ı kullanarak çerez ekleyin
-        cookieHelper.addCookie("qulak_exam_demo_session", "eyJpdiI6ImV3N1Awa20wcFlqNXZjTmJOaDh2SWc9PSIsInZhbHVlIjoibk9SZ3J5VXhYUmF3TlV3SmFpYXlqT2c3ajdlM1JiN1IzU0U3ZklVQjVkVTlWWnI0dGltay9rWGZTU3UvUGRSdEZyTVZzdmd2dlZHQTNLcVp5L3dLT09HVmNzSWViNWJrNjhlUHpTWnkvcm5sWkhlZGpreXlyN1JMaVZEVHhvWnUiLCJtYWMiOiIzMzQ1MGYwZDQ2MTFlOWExOTFkN2QxMWEzNjZjYjVlY2MwMjNkOTI3Y2FlOGU5ZGRjMDk4Y2ZjOWIwYTU3MGI4IiwidGFnIjoiIn0%3D");
 
-        // CookieHelper'ı kullanarak çerez değerini kontrol edin
-        boolean isPermissionGranted = cookieHelper.isCookieValueEqual("qulak_exam_demo_session", "eyJpdiI6ImV3N1Awa20wcFlqNXZjTmJOaDh2SWc9PSIsInZhbHVlIjoibk9SZ3J5VXhYUmF3TlV3SmFpYXlqT2c3ajdlM1JiN1IzU0U3ZklVQjVkVTlWWnI0dGltay9rWGZTU3UvUGRSdEZyTVZzdmd2dlZHQTNLcVp5L3dLT09HVmNzSWViNWJrNjhlUHpTWnkvcm5sWkhlZGpreXlyN1JMaVZEVHhvWnUiLCJtYWMiOiIzMzQ1MGYwZDQ2MTFlOWExOTFkN2QxMWEzNjZjYjVlY2MwMjNkOTI3Y2FlOGU5ZGRjMDk4Y2ZjOWIwYTU3MGI4IiwidGFnIjoiIn0%3D");
-        if (isPermissionGranted) {
-            System.out.println("Kamera izni verildi.");
-        } else {
-            System.out.println("Kamera izni verilmedi.");
+    public WebElement identityHeaderFind(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.elementToBeClickable(identityHeaderLocator));
+    }
+    public boolean isIdentityHeaderDisplayed(){
+        try{
+        return identityHeaderFind().isDisplayed();}
+        catch (Exception e){
+            Log.error("hata mesajı displayed:" +e.getMessage());
+            Log.info("hata mesajı veriyor");
+            System.out.println(e.getMessage());
+            return false;
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 
     }
+
     public WebElement addPhotoButtonFind(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(addPhotoButtonLocator));
     }
-
     public void addPhotoButtonClick(){
 
     }
-
     public WebElement addIdentityButtonFind(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50000));
-        return wait.until(ExpectedConditions.elementToBeClickable(addIdentityButtonLocator));
-    }
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
+            return wait.until(ExpectedConditions.presenceOfElementLocated(addIdentityButtonLocator));
+        } catch (TimeoutException e) {
 
+            System.err.println("Element bulunamadı: " + e.getMessage());
+            Log.error("Element bulunamıyor cunku: " +e.getMessage());
+            return null;
+        }
+        catch (Exception er) {
+            System.err.println("Exception Element bulunamadı: " + er.getMessage());
+            Log.error("exception Element bulunamıyor cunku: " +er.getMessage());
+            return null;
+        }
+    }
     public void addIdentityButtonClick(){
+        Log.info("butona tıklama işlemi başlıyor");
+
         addIdentityButtonFind().click();
+        Log.info("tıklandı");
+        System.out.println("tıklama başarılı");
     }
-
-
-
-    public void cameracek(){
-        String script = "navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 }, audio: false })" +
-                ".then(function(stream) {" +
-                "  var video = document.createElement('video');" +
-                "  document.body.appendChild(video);" +
-                "  video.srcObject = stream;" +
-                "  video.play();" +
-                "});";
-        ((JavascriptExecutor) driver).executeScript(script);
-
-// Sayfada bir düğmeye tıkla
-     //   WebElement captureButton = driver.findElement(By.id("captureButton"));
-       // captureButton.click();
-
-    }
-
     public void saveProfilePhoto(){
 
-
+        //fotograf ekle işlemi
         Actions action=new Actions(driver);
         action.moveToElement(addPhotoButtonFind()).click().perform();
 
-
+        //fotoğraf kaydetme işlemi
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
         WebElement element= wait.until(ExpectedConditions.elementToBeClickable(savePhotoButtonLocator));
         element.click();
       //  driver.navigate().refresh();
 
     }
-
     public void saveIdentityPhoto(){
 
-        Actions action = new Actions(driver);
+
      ///   actions.sendKeys("K").perform();
        // actions.keyDown(Keys.CONTROL).sendKeys("V").keyUp(Keys.CONTROL).perform();
 
+        //kimlikfotoğraf ekleme işlemi
 
-        addIdentityButtonFind().click();
+      //  action.moveToElement(addIdentityButtonFind()).click().perform();
+        if(isIdentityHeaderDisplayed())
+        addIdentityButtonClick();
+        else{
+
+            System.out.println("if basarısız");
+        }
+
+        //Actions action = new Actions(driver);
         System.out.println("tıklama başarılı");
-        action.sendKeys(Keys.chord(Keys.ARROW_DOWN )).perform();
+        //action.sendKeys(Keys.chord(Keys.ARROW_DOWN )).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement element= wait.until(ExpectedConditions.elementToBeClickable(saveIdentityButtonLocator));
-        element.click();
-        driver.navigate().refresh();
+        //kimlikfotoğraf kaydetme işlemi
+      //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
+        //WebElement element= wait.until(ExpectedConditions.elementToBeClickable(saveIdentityButtonLocator));
+       // element.click();
+       // driver.navigate().refresh();
 
     }
 

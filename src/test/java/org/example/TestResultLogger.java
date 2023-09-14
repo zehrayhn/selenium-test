@@ -3,34 +3,51 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
+
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-public class TestResultLogger extends TestListenerAdapter {
+public class TestResultLogger implements ITestListener {
+ //   private static final Logger logger = LogManager.getLogger(TestResultLogger.class);
+   Log log = new Log();
 
-    private static final Logger logger = LogManager.getLogger(TestResultLogger.class);
     @Override
     public void onTestStart(ITestResult result) {
-        logger.info("Test started: " + result.getName());
+        ITestListener.super.onTestStart(result);
     }
+
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        logger.info("Test succeeded: " + result.getName());
+        // Test başarılı olduğunda yapılacak işlemler
     }
 
-    @Override
-    public void onTestFailure(ITestResult result) {
-        logger.error("Test failed: " + result.getName());
-    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        logger.warn("Test skipped: " + result.getName());
+        // Test atlandığında yapılacak işlemler
+    }
+
+    @Override
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        // Belirli bir başarı yüzdesi içinde başarısız olan testler için yapılacak işlemler
+    }
+
+    @Override
+    public void onStart(ITestContext context) {
+        // TestNG test süreci başladığında yapılacak işlemler
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        logger.info("All tests finished in suite: " + context.getName());
+        // TestNG test süreci tamamlandığında yapılacak işlemler
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        String testName = result.getName();
+        String errorMessage = result.getThrowable().getMessage();
+        log.error("Test " + testName + " FAILED with error: " + errorMessage);
     }
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class Test_Register extends BaseTest{
     MandatoryPermitsPage mandatoryPermitsPage;
 
     PhotoShootPage photoShootPage;
+    EmailHelperPage emailHelperPage;
 
 
     @Test(priority = 1)
@@ -28,6 +30,8 @@ public class Test_Register extends BaseTest{
         startPage.registerClick();
         registerPage=new RegisterPage(driver);
       //  Assert.assertTrue(registerPage.isDisplayed());
+        emailHelperPage=new EmailHelperPage();
+
 
         try {
             FileInputStream file = new FileInputStream("Data/register.xlsx");
@@ -45,7 +49,7 @@ public class Test_Register extends BaseTest{
 
             double mobileNumeric = firstRow.getCell(3).getNumericCellValue();
             String mobile = String.valueOf(mobileNumeric);
-            String email = firstRow.getCell(4).getStringCellValue();
+           // String email = firstRow.getCell(4).getStringCellValue();
             double dateOfBirthNumeric = firstRow.getCell(5).getNumericCellValue();
             String dateOfBirth = String.valueOf(dateOfBirthNumeric);
             String gender = firstRow.getCell(6).getStringCellValue();
@@ -54,7 +58,15 @@ public class Test_Register extends BaseTest{
             String passwordConfirmation = firstRow.getCell(9).getStringCellValue();
             String zamandilimi=firstRow.getCell(10).getStringCellValue();
 
-            registerPage.fillAllFields(firstName, lastName, identity, mobile, email, dateOfBirth, gender, address, password, passwordConfirmation,zamandilimi);
+            String randomUsername=emailHelperPage.generateRandomUsername();
+            String randomEmail=randomUsername + "@" + "gmail.com";
+            Row rowToUpdate=sheet.getRow(1);
+            Cell emailCell=rowToUpdate.getCell(4);
+            emailCell.setCellValue(randomEmail);
+            FileOutputStream outFile = new FileOutputStream("Data/register.xlsx");
+            workbook.write(outFile);
+
+            registerPage.fillAllFields(firstName, lastName, identity, mobile, randomEmail, dateOfBirth, gender, address, password, passwordConfirmation,zamandilimi);
             registerPage.buttonClick();
           //  boolean isSuccess = registerPage.isRegistrationSuccessful();
            // Assert.assertTrue(isSuccess, "Kayıt işlemi başarılı değil.");
@@ -97,15 +109,15 @@ public class Test_Register extends BaseTest{
       //  photoShootPage.cameracek();
 
 
-     //   photoShootPage.cameraCookieHelper();
-     //   photoShootPage.addPhotoButtonClick();
+     // photoShootPage.cameraCookieHelper();
+     // photoShootPage.addPhotoButtonClick();
         photoShootPage.saveProfilePhoto();
-        // photoShootPage.addIdentityButtonClick();
+        //photoShootPage.addIdentityButtonClick();
          photoShootPage.saveIdentityPhoto();
-       // photoShootPage.savePhoto();
+         //photoShootPage.savePhoto();
 
-       // Set< Cookie> cookies=driver.manage().getCookies();
-       // System.out.println("cookie ssayısı: "+cookies.size());
+       //Set< Cookie> cookies=driver.manage().getCookies();
+       //System.out.println("cookie ssayısı: "+cookies.size());
 
        // for(Cookie cookie:cookies){
          //   System.out.println(cookie.getName()+":"+cookie.getValue());

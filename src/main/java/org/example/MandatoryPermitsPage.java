@@ -29,8 +29,6 @@ public class MandatoryPermitsPage extends BasePage{
         return wait.until(ExpectedConditions.elementToBeClickable(mandatoryPermitsHeaderLocator));
     }
     public WebElement nameFind(){
-
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(nameDemoLocator));
     }
