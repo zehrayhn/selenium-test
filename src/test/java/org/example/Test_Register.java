@@ -2,27 +2,22 @@ package org.example;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Set;
 
 public class Test_Register extends BaseTest {
 
-    RegisterPage registerPage;
-
+    RegistrationFormPage registerPage;
     MandatoryPermitsPage mandatoryPermitsPage;
-
     PhotoShootPage photoShootPage;
     EmailHelperPage emailHelperPage;
 
@@ -30,9 +25,8 @@ public class Test_Register extends BaseTest {
     @Test(priority = 1)
     public void go_to_Register() {
         startPage = new StartPage(driver);
-        //    Assert.assertTrue(startPage.isDisplayed());
-        startPage.registerClick();
-        registerPage = new RegisterPage(driver);
+        startPage.clickRegister();
+        registerPage = new RegistrationFormPage(driver);
         //  Assert.assertTrue(registerPage.isDisplayed());
         emailHelperPage = new EmailHelperPage();
 
@@ -113,7 +107,22 @@ public class Test_Register extends BaseTest {
 
         photoShootPage.saveProfilePhoto();
         //photoShootPage.addIdentityButtonClick();
+
+
+
+       // Set <Cookie> cookies=driver.manage().getCookies();
+        //System.out.println("sayı: "+cookies.size());
+
+       // for(Cookie cookie:cookies){
+        //    System.out.println(cookie.getName()+":"+cookie.getValue());
+      //  }
+
         photoShootPage.identityPhotoMove();
+        try{
+            photoShootPage.clickf7();
+        }catch (AWTException e){
+            throw  new RuntimeException(e);
+        }
         photoShootPage.saveIdentityPhoto();
 
     }

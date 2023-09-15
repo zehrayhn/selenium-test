@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class PhotoShootPage extends BasePage {
@@ -64,13 +65,13 @@ public class PhotoShootPage extends BasePage {
     }
 
     public WebElement savePhotoButtonFind() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         return wait.until(ExpectedConditions.elementToBeClickable(savePhotoButtonLocator));
     }
 
     public WebElement addIdentityButtonFind() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100000));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             Log.info("locator bulunuyorr..");
             return wait.until(ExpectedConditions.presenceOfElementLocated(addIdentityButtonLocator));
         } catch (TimeoutException e) {
@@ -86,7 +87,7 @@ public class PhotoShootPage extends BasePage {
     }
 
     public WebElement saveIdentityButtonFind() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50000));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         return wait.until(ExpectedConditions.elementToBeClickable(saveIdentityButtonLocator));
     }
 
@@ -100,6 +101,37 @@ public class PhotoShootPage extends BasePage {
 
     }
 
+    public void clickf7() throws AWTException {
+
+
+        // Java Robot'u başlatın
+        Robot robot = new Robot();
+
+        // F7 tuşuna basın
+        try{
+        robot.keyPress(KeyEvent.VK_F7);
+        allowCookie();
+        robot.keyRelease(KeyEvent.VK_F7);
+
+        }
+        catch (Exception e){
+            Log.error("robot hata"+e.getMessage());
+        }
+    }
+
+    public void allowCookie(){
+
+        Set<Cookie> cookies = driver.manage().getCookies();
+
+        // Çerezleri döngü içinde tek tek kabul edin
+        for (Cookie cookie : cookies) {
+            System.out.println("Çerez Adı: " + cookie.getName());
+            System.out.println("Çerez Değeri: " + cookie.getValue());
+
+            // Çerezi kabul etmek için:
+            driver.manage().addCookie(cookie);
+        }
+    }
     public void identityPhotoMove() {
 
         //kimlikfotoğraf ekleme işlemi
@@ -121,28 +153,16 @@ public class PhotoShootPage extends BasePage {
 
     public void saveIdentityPhoto() {
 
-        //   WebElement popup = driver.findElement(new By.ByCssSelector("[class=\'modal-content\']"));
-
-        // JavascriptExecutor executor = (JavascriptExecutor) driver;
-        //   executor.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'K'}));");
-        //  executor.executeScript("document.dispatchEvent(new KeyboardEvent('keyup', {'key': 'K'}));");
-
-        //action.sendKeys(Keys.chord(Keys.ARROW_DOWN)).perform();
-        //   actions.sendKeys(Keys.ARROW_DOWN).perform();
-        Actions act = new Actions(driver);
-        //actions.keyDown(Keys.CONTROL).sendKeys("K").keyUp(Keys.CONTROL).perform();
-        //  act.pause(1000).sendKeys("V").click(popup).perform();
-        act.pause(1000).sendKeys(Keys.F5).perform();
-
-
         try {
-            if (saveIdentityButtonFind().isDisplayed() && saveIdentityButtonFind().isEnabled()) {
+            if (savePhotoButtonFind().isDisplayed() && savePhotoButtonFind().isEnabled()) {
                 System.out.println("Buton mevcut ve etkin (tıklanabilir) durumda.");
 
-                saveIdentityButtonFind().click();
+                savePhotoButtonFind().click();
+
             } else {
                 System.out.println("tıklanamaz");
             }
+          //  saveIdentityButtonFind().click();
         } catch (Exception e) {
             System.out.println("hataaa");
             Log.error("kimlik kaydedilemedi:" + e.getMessage());

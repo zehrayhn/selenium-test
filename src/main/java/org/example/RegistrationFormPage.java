@@ -7,166 +7,181 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegisterPage extends BasePage {
-    public RegisterPage(WebDriver driver){
+public class RegistrationFormPage extends BasePage {
+    public RegistrationFormPage(WebDriver driver) {
         super(driver);
     }
-    By registerHeaderLocator=new By.ByCssSelector("div.activationSectionTitle");
-    By firstNameLocator=new By.ByCssSelector("[id=\'first_name\']");
-    By lastNameLocator=new By.ByCssSelector("[id=\'last_name\']");
-    By identityLocator=new By.ByCssSelector("[id=\'IDnumber\']");
-    By mobileLocator=new By.ByCssSelector("[id=\'mobile\']");
-    By emailLocator=new By.ByCssSelector("[id=\'email\']");
-    By dateOfBirth=new By.ByCssSelector("[id=\'date_of_birth\']");
-    By genderLocator=new By.ByCssSelector("[id=\'gender\']");
-    By addressLocator=new By.ByCssSelector("[id=\'address\']");
-    By passwordLocator=new By.ByCssSelector("[id=\'password\']");
-    By passwordConfirmationLocator=new By.ByCssSelector("[id=\'password_confirmation\']");
-    By successButtonLocator=new By.ByCssSelector(".btn-primary");
 
-    By zamandilimiLocator=new By.ByCssSelector("[name=\'user_timezone\']");
+    By registerHeaderLocator = new By.ByCssSelector("div.activationSectionTitle");
+    By firstNameLocator = new By.ByCssSelector("[id=\'first_name\']");
+    By lastNameLocator = new By.ByCssSelector("[id=\'last_name\']");
+    By identityLocator = new By.ByCssSelector("[id=\'IDnumber\']");
+    By mobileLocator = new By.ByCssSelector("[id=\'mobile\']");
+    By emailLocator = new By.ByCssSelector("[id=\'email\']");
+    By dateOfBirth = new By.ByCssSelector("[id=\'date_of_birth\']");
+    By genderLocator = new By.ByCssSelector("[id=\'gender\']");
+    By addressLocator = new By.ByCssSelector("[id=\'address\']");
+    By passwordLocator = new By.ByCssSelector("[id=\'password\']");
+    By passwordConfirmationLocator = new By.ByCssSelector("[id=\'password_confirmation\']");
+    By successButtonLocator = new By.ByCssSelector(".btn-primary");
 
-    public WebElement registerHeaderFind(){
+    By zamandilimiLocator = new By.ByCssSelector("[name=\'user_timezone\']");
+
+    public WebElement registerHeaderFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(registerHeaderLocator));
     }
-    public boolean isDisplayed(){
-        try{
-        return registerHeaderFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isDisplayed() {
+        try {
+            return registerHeaderFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement firstNameFind(){
+    public WebElement firstNameFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         return wait.until(ExpectedConditions.elementToBeClickable(firstNameLocator));
     }
-    public boolean isFirstNameDisplayed(){
-        try{
-        return firstNameFind().isDisplayed();}
-        catch(TimeoutException e){
+
+    public boolean isFirstNameDisplayed() {
+        try {
+            return firstNameFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
 
         }
     }
 
-    public WebElement lastNameFind(){
+    public WebElement lastNameFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(lastNameLocator));
     }
-    public boolean isLastNameDisplayed(){
-        try{
-        return lastNameFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isLastNameDisplayed() {
+        try {
+            return lastNameFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
     public WebElement identityFind() {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            return wait.until(ExpectedConditions.elementToBeClickable(identityLocator));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.elementToBeClickable(identityLocator));
     }
-    public boolean isIdentityDisplayed(){
-        try{
-        return identityFind().isDisplayed();}
-        catch(TimeoutException e){
+
+    public boolean isIdentityDisplayed() {
+        try {
+            return identityFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
-    public WebElement mobileFind(){
+
+    public WebElement mobileFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(mobileLocator));
     }
-    public boolean isMobileDisplayed(){
-        try{
-        return mobileFind().isDisplayed();}
-        catch(TimeoutException e){
+
+    public boolean isMobileDisplayed() {
+        try {
+            return mobileFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement emailFind(){
+    public WebElement emailFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(emailLocator));
     }
-    public boolean isEmailDisplayed(){
-        try{
-        return emailFind().isDisplayed();}
-        catch(TimeoutException e){
+
+    public boolean isEmailDisplayed() {
+        try {
+            return emailFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement dateOfBirthFind(){
+    public WebElement dateOfBirthFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(dateOfBirth));
     }
-    public boolean isdateOfBirthDisplayed(){
-        try{
-        return dateOfBirthFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isdateOfBirthDisplayed() {
+        try {
+            return dateOfBirthFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
-    public WebElement genderFind(){
+
+    public WebElement genderFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(genderLocator));
     }
-    public boolean isGenderDisplayed(){
-        try{
-        return genderFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isGenderDisplayed() {
+        try {
+            return genderFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement addressFind(){
+    public WebElement addressFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(addressLocator));
     }
-    public boolean isAddressDisplayed(){
-        try{
-        return addressFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isAddressDisplayed() {
+        try {
+            return addressFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement passwordFind(){
+    public WebElement passwordFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         return wait.until(ExpectedConditions.elementToBeClickable(passwordLocator));
     }
 
 
-    public boolean isPasswordDisplayed(){
-        try{
-        return passwordFind().isDisplayed();}
-        catch(TimeoutException e){
+    public boolean isPasswordDisplayed() {
+        try {
+            return passwordFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
-    public WebElement passwordConfirmationFind(){
+
+    public WebElement passwordConfirmationFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(passwordConfirmationLocator));
     }
-    public boolean isPasswordConfirmationDisplayed(){
-        try{
-        return passwordConfirmationFind().isDisplayed();}
-        catch (TimeoutException e){
+
+    public boolean isPasswordConfirmationDisplayed() {
+        try {
+            return passwordConfirmationFind().isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement buttonFind(){
+    public WebElement buttonFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(successButtonLocator));
     }
-    public void buttonClick(){
+
+    public void buttonClick() {
         buttonFind().click();
     }
 
-    public void firstNameType(String text){
+    public void firstNameType(String text) {
         WebElement firstNameElement = firstNameFind();
         if (firstNameElement.isDisplayed()) {
             firstNameElement.sendKeys(text);
@@ -176,7 +191,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void lastNameType(String text){
+    public void lastNameType(String text) {
         WebElement lastNameElement = lastNameFind();
         if (lastNameElement.isDisplayed()) {
             lastNameElement.sendKeys(text);
@@ -186,7 +201,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void identityType(String text){
+    public void identityType(String text) {
         WebElement identityElement = identityFind();
         if (identityElement.isDisplayed()) {
             identityElement.sendKeys(text);
@@ -196,7 +211,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void mobileType(String text){
+    public void mobileType(String text) {
         WebElement mobileElement = mobileFind();
         if (mobileElement.isDisplayed()) {
             mobileElement.sendKeys(text);
@@ -206,7 +221,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void emailType(String text){
+    public void emailType(String text) {
         WebElement mobileElement = emailFind();
         if (mobileElement.isDisplayed()) {
             mobileElement.sendKeys(text);
@@ -216,7 +231,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void dateOfBirthType(String text){
+    public void dateOfBirthType(String text) {
         WebElement dateOfBirthElement = dateOfBirthFind();
         if (dateOfBirthElement.isDisplayed()) {
             dateOfBirthElement.sendKeys(text);
@@ -225,7 +240,8 @@ public class RegisterPage extends BasePage {
             System.out.println("soyad alanı görünmez.");
         }
     }
-    public void genderType(String text){
+
+    public void genderType(String text) {
         WebElement genderElement = genderFind();
         if (genderElement.isDisplayed()) {
             genderElement.sendKeys(text);
@@ -235,7 +251,7 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void addressType(String text){
+    public void addressType(String text) {
         WebElement addressElement = addressFind();
         if (addressElement.isDisplayed()) {
             addressElement.sendKeys(text);
@@ -244,7 +260,8 @@ public class RegisterPage extends BasePage {
             System.out.println("soyad alanı görünmez.");
         }
     }
-    public void passwordType(String text){
+
+    public void passwordType(String text) {
         WebElement passwordElement = passwordFind();
         if (passwordElement.isDisplayed()) {
             passwordElement.sendKeys(text);
@@ -253,7 +270,8 @@ public class RegisterPage extends BasePage {
             System.out.println("soyad alanı görünmez.");
         }
     }
-    public void passwordConfirmationType(String text){
+
+    public void passwordConfirmationType(String text) {
         WebElement passwordConfirmationElement = passwordConfirmationFind();
         if (passwordConfirmationElement.isDisplayed()) {
             passwordConfirmationElement.sendKeys(text);
@@ -263,25 +281,27 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public WebElement zamandilimiFind(){
+    public WebElement zamandilimiFind() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(zamandilimiLocator));
     }
-    public boolean iszamandiliimiDisplayed(){
-        try{
-        return zamandilimiFind().isDisplayed();}
-        catch(TimeoutException e){
-        return false;}
+
+    public boolean iszamandiliimiDisplayed() {
+        try {
+            return zamandilimiFind().isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
-    public void zamandilimiType(String text){
-        WebElement element=zamandilimiFind();
-        Select select=new Select(element);
+    public void zamandilimiType(String text) {
+        WebElement element = zamandilimiFind();
+        Select select = new Select(element);
         select.selectByVisibleText(text);
     }
 
 
-    public boolean fillAllFields(String firstName, String lastName, String identity, String mobile, String email, String dateOfBirth,String gender, String address,String password,String passwordConfirmation, String zamandilimi) {
+    public boolean fillAllFields(String firstName, String lastName, String identity, String mobile, String email, String dateOfBirth, String gender, String address, String password, String passwordConfirmation, String zamandilimi) {
         boolean success = true; // Başlangıçta başarılı kabul edelim
 
         try {
@@ -360,10 +380,10 @@ public class RegisterPage extends BasePage {
             }
 
 
-        }catch (org.openqa.selenium.NoSuchElementException e) {
+        } catch (org.openqa.selenium.NoSuchElementException e) {
             // NoSuchElementException hatası görmezden gelinir ve işlem devam eder
             System.out.println("Element bulunamadı.");
-            success=false;
+            success = false;
         }
 
         return success;

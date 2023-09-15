@@ -28,7 +28,7 @@ public class StartPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(registerLocator));
     }
-    public void registerClick(){
+    public void clickRegister(){
         registerFind().click();
     }
 

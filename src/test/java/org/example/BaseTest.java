@@ -16,6 +16,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Set;
 
 
 @Listeners(TestListenerAdapter.class)
@@ -29,29 +31,17 @@ public class BaseTest {
 
     @BeforeTest
     public static void setUp(){
-        WebDriverManager.chromedriver().setup();
+
         ChromeOptions options = new ChromeOptions();
-
-
+        WebDriverManager.chromedriver().setup();
         options.addArguments("use-fake-ui-for-media-stream");
-       driver = new ChromeDriver(options);
+        options.addArguments("disable-notifications");
+        driver = new ChromeDriver(options);
        // driver.get("https://test.qulak.com/");
-        //System.setProperty("webdriver.gecko.driver", "path/to/geckodriver.exe"); // Geckodriver'in yolunu ayarlayın
-
-      //  FirefoxOptions options = new FirefoxOptions();
-     //   options.addPreference("dom.webnotifications.enabled", false); // Bildirimleri devre dışı bırak
-
-       // driver = new FirefoxDriver(options);
-
-
-        driver.get("https://demo.qulakexam.com/");// Örnek olarak 10 saniye bekleme süresi
+        driver.get("https://demo.qulakexam.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
-
-        Log.info("hello");
-
         driver.navigate().refresh();
-
 
     }
 
