@@ -13,23 +13,16 @@ public class StartPage extends BasePage{
     public StartPage(WebDriver driver){
         super(driver);
     }
-    By startPageHeaderLocator=new By.ByCssSelector("h3.title");
 
-    By registerLocator=new By.ByCssSelector("div.buttonItem:nth-child(2) a.loginButton");
+    By registerButtonLocator =new By.ByCssSelector("div.buttonItem:nth-child(2) a.loginButton");
 
-    public WebElement startPageHeaderFind(){
+
+    public WebElement findRegister(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(startPageHeaderLocator));
-    }
-    public boolean isDisplayed(){
-        return startPageHeaderFind().isDisplayed();
-    }
-    public WebElement registerFind(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(registerLocator));
+        return wait.until(ExpectedConditions.elementToBeClickable(registerButtonLocator));
     }
     public void clickRegister(){
-        registerFind().click();
+        findRegister().click();
     }
 
 }

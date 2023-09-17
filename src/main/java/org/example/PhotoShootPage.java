@@ -1,10 +1,6 @@
 package org.example;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,7 +8,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class PhotoShootPage extends BasePage {
     ///private static final Logger logger = LogManager.getLogger(PhotoShootPage.class);
@@ -23,33 +18,31 @@ public class PhotoShootPage extends BasePage {
         super(driver);
         this.cookieHelper = new CookieHelper(driver);
     }
-
-    By photoShootPageHeaderLocator = new By.ByCssSelector("[class=\'sectionTitle textCenter\']");
-    By addPhotoButtonLocator = new By.ByCssSelector("[class=\'btn btn-success btm-lg btnRounded btnAgree\']");
+    By headerLocator = new By.ByCssSelector("[class=\'sectionTitle textCenter\']");
+    By takePhotoButtonLocator = new By.ByCssSelector("[class=\'btn btn-success btm-lg btnRounded btnAgree\']");
     By savePhotoButtonLocator = new By.ByCssSelector("[class=\'btn btnRounded btn-success btn-lg btnFont\']");
     //By addIdentityButtonLocator=By.xpath("//*[@id=\'dashboardMainContent\']/div/div[4]/div/div/div/div[3]/button");
     //  By addIdentityButtonLocator=new By.ByCssSelector("[class=\'btn btn-success btm-lg btnRounded btnAgree\']");
     By addIdentityButtonLocator = new By.ByCssSelector("#dashboardMainContent > div > div.dashboardContentMain > div > div > div > div.activationSectionFooter.flexCenter.borderTop.paddingTop > button");
     By saveIdentityButtonLocator = new By.ByCssSelector(".btnAgree:nth-child(1)");
     By identityHeaderLocator = new By.ByCssSelector("[class=\'sectionTitle textCenter\']");
-
-    public WebElement photoShootPageHeaderFind() {
+    public WebElement findHeader() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(photoShootPageHeaderLocator));
+        return wait.until(ExpectedConditions.elementToBeClickable(headerLocator));
     }
 
-    public boolean isDisplayed() {
-        return photoShootPageHeaderFind().isDisplayed();
+    public boolean isHeaderDisplayed() {
+        return findHeader().isDisplayed();
     }
 
-    public WebElement identityHeaderFind() {
+    public WebElement findIdentityHeader() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(identityHeaderLocator));
     }
 
     public boolean isIdentityHeaderDisplayed() {
         try {
-            return identityHeaderFind().isDisplayed();
+            return findIdentityHeader().isDisplayed();
         } catch (Exception e) {
             Log.error("hata mesajı displayed:" + e.getMessage());
             Log.info("hata mesajı veriyor");
@@ -59,17 +52,17 @@ public class PhotoShootPage extends BasePage {
 
     }
 
-    public WebElement addPhotoButtonFind() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(addPhotoButtonLocator));
+    public WebElement findTakePhotoButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        return wait.until(ExpectedConditions.elementToBeClickable(takePhotoButtonLocator));
     }
 
-    public WebElement savePhotoButtonFind() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+    public WebElement findSavePhotoButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000000));
         return wait.until(ExpectedConditions.elementToBeClickable(savePhotoButtonLocator));
     }
 
-    public WebElement addIdentityButtonFind() {
+    public WebElement findAddIdentityButton() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             Log.info("locator bulunuyorr..");
@@ -93,16 +86,15 @@ public class PhotoShootPage extends BasePage {
 
 
     public void saveProfilePhoto() {
-        //fotograf ekle işlemi
-        Actions action = new Actions(driver);
-        action.moveToElement(addPhotoButtonFind()).click().perform();
+        //fotograf çek işlemi
+        findTakePhotoButton().click();
 
-        savePhotoButtonFind().click();
+        //fotoğraf kayydet işlemi
+        findSavePhotoButton().click();
 
     }
 
     public void clickf7() throws AWTException {
-
 
         // Java Robot'u başlatın
         Robot robot = new Robot();
@@ -132,18 +124,18 @@ public class PhotoShootPage extends BasePage {
             driver.manage().addCookie(cookie);
         }
     }
-    public void identityPhotoMove() {
+    public void clickAddIdentity() {
 
         //kimlikfotoğraf ekleme işlemi
-        if (addPhotoButtonFind().isDisplayed() && addPhotoButtonFind().isEnabled()) {
+        if (findTakePhotoButton().isDisplayed() && findTakePhotoButton().isEnabled()) {
             System.out.println("Buton mevcut ve etkin (tıklanabilir) durumda.");
             try {
                 //  identity.click();
-                addPhotoButtonFind().click();
+                findTakePhotoButton().click();
             } catch (Exception e) {
                 Log.error("addPhotoFind butona tıklarken hata: " + e.getMessage());
             }
-            addPhotoButtonFind().click();
+            findTakePhotoButton().click();
 
         } else {
             System.out.println("Buton etkin değil (tıklanamaz).");
@@ -151,13 +143,13 @@ public class PhotoShootPage extends BasePage {
 
     }
 
-    public void saveIdentityPhoto() {
+    public void clickOnSaveIdentity() {
 
         try {
-            if (savePhotoButtonFind().isDisplayed() && savePhotoButtonFind().isEnabled()) {
+            if (findSavePhotoButton().isDisplayed() && findSavePhotoButton().isEnabled()) {
                 System.out.println("Buton mevcut ve etkin (tıklanabilir) durumda.");
 
-                savePhotoButtonFind().click();
+                findSavePhotoButton().click();
 
             } else {
                 System.out.println("tıklanamaz");

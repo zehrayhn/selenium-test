@@ -12,140 +12,139 @@ public class RegistrationFormPage extends BasePage {
         super(driver);
     }
 
-    By registerHeaderLocator = new By.ByCssSelector("div.activationSectionTitle");
+    By headerLocator = new By.ByCssSelector("div.activationSectionTitle");
     By firstNameLocator = new By.ByCssSelector("[id=\'first_name\']");
     By lastNameLocator = new By.ByCssSelector("[id=\'last_name\']");
     By identityLocator = new By.ByCssSelector("[id=\'IDnumber\']");
     By mobileLocator = new By.ByCssSelector("[id=\'mobile\']");
     By emailLocator = new By.ByCssSelector("[id=\'email\']");
-    By dateOfBirth = new By.ByCssSelector("[id=\'date_of_birth\']");
+    By dateOfBirthLocator = new By.ByCssSelector("[id=\'date_of_birth\']");
     By genderLocator = new By.ByCssSelector("[id=\'gender\']");
     By addressLocator = new By.ByCssSelector("[id=\'address\']");
     By passwordLocator = new By.ByCssSelector("[id=\'password\']");
     By passwordConfirmationLocator = new By.ByCssSelector("[id=\'password_confirmation\']");
-    By successButtonLocator = new By.ByCssSelector(".btn-primary");
+    By confirmButtonLocator = new By.ByCssSelector(".btn-primary");
+    By timePeriodLocator = new By.ByCssSelector("[name=\'user_timezone\']");
 
-    By zamandilimiLocator = new By.ByCssSelector("[name=\'user_timezone\']");
-
-    public WebElement registerHeaderFind() {
+    public WebElement findHeader() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(registerHeaderLocator));
+        return wait.until(ExpectedConditions.elementToBeClickable(headerLocator));
     }
 
-    public boolean isDisplayed() {
+    public boolean isHeaderDisplayed() {
         try {
-            return registerHeaderFind().isDisplayed();
+            return findHeader().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement firstNameFind() {
+    public WebElement findFirstName() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         return wait.until(ExpectedConditions.elementToBeClickable(firstNameLocator));
     }
 
     public boolean isFirstNameDisplayed() {
         try {
-            return firstNameFind().isDisplayed();
+            return findFirstName().isDisplayed();
         } catch (TimeoutException e) {
             return false;
 
         }
     }
 
-    public WebElement lastNameFind() {
+    public WebElement findLastName() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(lastNameLocator));
     }
 
     public boolean isLastNameDisplayed() {
         try {
-            return lastNameFind().isDisplayed();
+            return findLastName().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement identityFind() {
+    public WebElement findIdentity() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(identityLocator));
     }
 
     public boolean isIdentityDisplayed() {
         try {
-            return identityFind().isDisplayed();
+            return findIdentity().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement mobileFind() {
+    public WebElement findMobile() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(mobileLocator));
     }
 
     public boolean isMobileDisplayed() {
         try {
-            return mobileFind().isDisplayed();
+            return findMobile().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement emailFind() {
+    public WebElement findEmail() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(emailLocator));
     }
 
     public boolean isEmailDisplayed() {
         try {
-            return emailFind().isDisplayed();
+            return findEmail().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement dateOfBirthFind() {
+    public WebElement findDateOfBirth() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(dateOfBirth));
+        return wait.until(ExpectedConditions.elementToBeClickable(dateOfBirthLocator));
     }
 
     public boolean isdateOfBirthDisplayed() {
         try {
-            return dateOfBirthFind().isDisplayed();
+            return findDateOfBirth().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement genderFind() {
+    public WebElement findGender() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(genderLocator));
     }
 
     public boolean isGenderDisplayed() {
         try {
-            return genderFind().isDisplayed();
+            return findGender().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement addressFind() {
+    public WebElement findAddress() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(addressLocator));
     }
 
     public boolean isAddressDisplayed() {
         try {
-            return addressFind().isDisplayed();
+            return findAddress().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement passwordFind() {
+    public WebElement findPassword() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         return wait.until(ExpectedConditions.elementToBeClickable(passwordLocator));
     }
@@ -153,36 +152,40 @@ public class RegistrationFormPage extends BasePage {
 
     public boolean isPasswordDisplayed() {
         try {
-            return passwordFind().isDisplayed();
+            return findPassword().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement passwordConfirmationFind() {
+    public WebElement findPasswordConfirmation() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(passwordConfirmationLocator));
     }
 
     public boolean isPasswordConfirmationDisplayed() {
         try {
-            return passwordConfirmationFind().isDisplayed();
+            return findPasswordConfirmation().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public WebElement buttonFind() {
+    public WebElement findConfirmButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(successButtonLocator));
+        return wait.until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
     }
 
-    public void buttonClick() {
-        buttonFind().click();
+    public WebElement findTimePeriod() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.elementToBeClickable(timePeriodLocator));
+    }
+    public void clickConfirmButton() {
+        findConfirmButton().click();
     }
 
-    public void firstNameType(String text) {
-        WebElement firstNameElement = firstNameFind();
+    public void enterFirstName(String text) {
+        WebElement firstNameElement = findFirstName();
         if (firstNameElement.isDisplayed()) {
             firstNameElement.sendKeys(text);
         } else {
@@ -191,8 +194,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void lastNameType(String text) {
-        WebElement lastNameElement = lastNameFind();
+    public void enterLastName(String text) {
+        WebElement lastNameElement = findLastName();
         if (lastNameElement.isDisplayed()) {
             lastNameElement.sendKeys(text);
         } else {
@@ -201,8 +204,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void identityType(String text) {
-        WebElement identityElement = identityFind();
+    public void enterIdentity(String text) {
+        WebElement identityElement = findIdentity();
         if (identityElement.isDisplayed()) {
             identityElement.sendKeys(text);
         } else {
@@ -211,8 +214,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void mobileType(String text) {
-        WebElement mobileElement = mobileFind();
+    public void enterMobile(String text) {
+        WebElement mobileElement = findMobile();
         if (mobileElement.isDisplayed()) {
             mobileElement.sendKeys(text);
         } else {
@@ -221,8 +224,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void emailType(String text) {
-        WebElement mobileElement = emailFind();
+    public void enterEmail(String text) {
+        WebElement mobileElement = findEmail();
         if (mobileElement.isDisplayed()) {
             mobileElement.sendKeys(text);
         } else {
@@ -231,8 +234,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void dateOfBirthType(String text) {
-        WebElement dateOfBirthElement = dateOfBirthFind();
+    public void enterDateOfBirth(String text) {
+        WebElement dateOfBirthElement = findDateOfBirth();
         if (dateOfBirthElement.isDisplayed()) {
             dateOfBirthElement.sendKeys(text);
         } else {
@@ -241,8 +244,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void genderType(String text) {
-        WebElement genderElement = genderFind();
+    public void enterGender(String text) {
+        WebElement genderElement = findGender();
         if (genderElement.isDisplayed()) {
             genderElement.sendKeys(text);
         } else {
@@ -251,8 +254,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void addressType(String text) {
-        WebElement addressElement = addressFind();
+    public void enterAddress(String text) {
+        WebElement addressElement = findAddress();
         if (addressElement.isDisplayed()) {
             addressElement.sendKeys(text);
         } else {
@@ -261,8 +264,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void passwordType(String text) {
-        WebElement passwordElement = passwordFind();
+    public void enterPassword(String text) {
+        WebElement passwordElement = findPassword();
         if (passwordElement.isDisplayed()) {
             passwordElement.sendKeys(text);
         } else {
@@ -271,8 +274,8 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public void passwordConfirmationType(String text) {
-        WebElement passwordConfirmationElement = passwordConfirmationFind();
+    public void enterPasswordConfirmation(String text) {
+        WebElement passwordConfirmationElement = findPasswordConfirmation();
         if (passwordConfirmationElement.isDisplayed()) {
             passwordConfirmationElement.sendKeys(text);
         } else {
@@ -281,21 +284,18 @@ public class RegistrationFormPage extends BasePage {
         }
     }
 
-    public WebElement zamandilimiFind() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(zamandilimiLocator));
-    }
+
 
     public boolean iszamandiliimiDisplayed() {
         try {
-            return zamandilimiFind().isDisplayed();
+            return findTimePeriod().isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    public void zamandilimiType(String text) {
-        WebElement element = zamandilimiFind();
+    public void enterTimePeriod(String text) {
+        WebElement element = findTimePeriod();
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
@@ -306,59 +306,59 @@ public class RegistrationFormPage extends BasePage {
 
         try {
             if (isFirstNameDisplayed()) {
-                firstNameType(firstName);
+                enterFirstName(firstName);
             } else {
                 System.out.println("Ad alanı görünmez.");
                 success = false;
             }
 
             if (isLastNameDisplayed()) {
-                lastNameType(lastName);
+                enterLastName(lastName);
             } else {
                 System.out.println("Soyad alanı görünmez.");
                 success = false;
             }
 
             if (isEmailDisplayed()) {
-                emailType(email);
+                enterEmail(email);
             } else {
                 System.out.println("E-posta alanı görünmez.");
                 success = false;
             }
             if (isPasswordDisplayed()) {
-                passwordType(password);
+                enterPassword(password);
             } else {
                 System.out.println("password alanı görünmez.");
                 success = false;
             }
             if (isPasswordConfirmationDisplayed()) {
-                passwordConfirmationType(passwordConfirmation);
+                enterPasswordConfirmation(passwordConfirmation);
             } else {
                 System.out.println("password alanı görünmez.");
                 success = false;
             }
 
             if (iszamandiliimiDisplayed()) {
-                zamandilimiType(zamandilimi);
+                enterTimePeriod(zamandilimi);
             } else {
                 System.out.println("zamandiliimi alanı görünmez.");
                 success = false;
             }
 
             if (isdateOfBirthDisplayed()) {
-                dateOfBirthType(dateOfBirth);
+                enterDateOfBirth(dateOfBirth);
             } else {
                 System.out.println("Telefon numarası alanı görünmez.");
                 success = false;
             }
             if (isGenderDisplayed()) {
-                genderType(gender);
+                enterGender(gender);
             } else {
                 System.out.println("Cinsiyet alanı görünmez.");
                 success = false;
             }
             if (isAddressDisplayed()) {
-                addressType(address);
+                enterAddress(address);
             } else {
                 System.out.println("Adres alanı görünmez.");
                 success = false;
@@ -366,19 +366,18 @@ public class RegistrationFormPage extends BasePage {
 
 
             if (isIdentityDisplayed()) {
-                identityType(identity);
+                enterIdentity(identity);
             } else {
                 System.out.println("Kimlik numarası alanı görünmez.");
                 success = false;
             }
 
             if (isMobileDisplayed()) {
-                mobileType(mobile);
+                enterMobile(mobile);
             } else {
                 System.out.println("Telefon numarası alanı görünmez.");
                 success = false;
             }
-
 
         } catch (org.openqa.selenium.NoSuchElementException e) {
             // NoSuchElementException hatası görmezden gelinir ve işlem devam eder
@@ -387,10 +386,6 @@ public class RegistrationFormPage extends BasePage {
         }
 
         return success;
-    }
-
-    public boolean isRegistrationSuccessful() {
-        return registerHeaderFind().isDisplayed();
     }
 
 
