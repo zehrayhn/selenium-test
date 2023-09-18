@@ -87,7 +87,7 @@ public class Test_Register extends BaseTest {
         boolean isOpened = homePage.isHeaderDisplayed();
         Assert.assertTrue(isOpened);
         if (isSuccess) {
-            System.out.println("Kimlik adımına geçildi."); // Başarılı olduğunda konsola mesaj yazdırılır
+            System.out.println("Ad soyad görüldü."); // Başarılı olduğunda konsola mesaj yazdırılır
         }
     }
 

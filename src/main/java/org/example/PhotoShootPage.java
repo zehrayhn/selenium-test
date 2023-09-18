@@ -53,7 +53,7 @@ public class PhotoShootPage extends BasePage {
     }
 
     public WebElement findTakePhotoButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000000));
         return wait.until(ExpectedConditions.elementToBeClickable(takePhotoButtonLocator));
     }
 

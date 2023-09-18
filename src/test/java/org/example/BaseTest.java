@@ -37,8 +37,8 @@ public class BaseTest {
         options.addArguments("use-fake-ui-for-media-stream");
         options.addArguments("disable-notifications");
         driver = new ChromeDriver(options);
-       // driver.get("https://test.qulak.com/");
-        driver.get("https://demo.qulakexam.com/");
+       driver.get("https://test.qulak.com/");
+       // driver.get("https://demo.qulakexam.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
         driver.navigate().refresh();
